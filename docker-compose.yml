@@ -1,0 +1,43 @@
+version: '3'
+services:
+  influxdb:
+    image: influxdb:latest
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    expose:
+    - "8086"
+    volumes:
+    - "./monitoring/influxdb/data:/var/lib/influxdb"
+    environment:
+    - INFLUXDB_DB=bitmon
+  fluentd:
+    build:
+      context: ./monitoring/fluentd
+      dockerfile: ./monitoring/fluentd/Dockerfile
+    image: fluentd-bitmon:v0.1
+    depends_on:
+    - influxdb
+    external_links:
+    - influxdb:influxdb
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    volumes:
+    - "./monitoring/fluentd/fluent.conf:/fluentd/etc/fluent.conf"
+  grafana:
+    image: grafana/grafana:latest
+    depends_on:
+    - influxdb
+    external_links:
+    - influxdb:influxdb
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    expose:
+    - "3000"
+    ports:
+    - "3000:3000"

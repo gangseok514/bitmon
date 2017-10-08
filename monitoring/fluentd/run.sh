@@ -1,0 +1,1 @@
+docker run -d -v $PWD/fluent.conf:/fluentd/etc/fluent.conf -e FLUENTD_CONF=fluent.conf --link influxdb:influxdb --name fluentd fluentd-bitmon:v0.1

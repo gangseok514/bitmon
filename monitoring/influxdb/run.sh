@@ -1,0 +1,1 @@
+docker run -d -p 8086:8086 -v $PWD/data:/var/lib/influxdb -e INFLUXDB_DB=bitmon --name influxdb influxdb

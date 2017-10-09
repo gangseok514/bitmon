@@ -9,13 +9,12 @@ services:
     expose:
     - "8086"
     volumes:
-    - "./monitoring/influxdb/data:/var/lib/influxdb"
+    - "./influxdb/data:/var/lib/influxdb"
     environment:
     - INFLUXDB_DB=bitmon
   fluentd:
     build:
-      context: ./monitoring/fluentd
-      dockerfile: ./monitoring/fluentd/Dockerfile
+      context: ./fluentd
     image: fluentd-bitmon:v0.1
     depends_on:
     - influxdb
@@ -26,7 +25,7 @@ services:
       restart_policy:
         condition: on-failure
     volumes:
-    - "./monitoring/fluentd/fluent.conf:/fluentd/etc/fluent.conf"
+    - "./fluentd/fluent.conf:/fluentd/etc/fluent.conf"
   grafana:
     image: grafana/grafana:latest
     depends_on:

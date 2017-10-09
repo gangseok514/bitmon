@@ -33,12 +33,6 @@
       "id": "singlestat",
       "name": "Singlestat",
       "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "table",
-      "name": "Table",
-      "version": ""
     }
   ],
   "annotations": {
@@ -1319,112 +1313,6 @@
       "showTitle": true,
       "title": "Price per exchanges",
       "titleSize": "h6"
-    },
-    {
-      "collapse": false,
-      "height": 250,
-      "panels": [
-        {
-          "columns": [],
-          "datasource": "${DS_INFLUXDB}",
-          "fontSize": "100%",
-          "id": 15,
-          "links": [],
-          "pageSize": null,
-          "scroll": true,
-          "showHeader": true,
-          "sort": {
-            "col": 0,
-            "desc": true
-          },
-          "span": 12,
-          "styles": [
-            {
-              "alias": "Time",
-              "dateFormat": "YYYY-MM-DD HH:mm:ss",
-              "pattern": "Time",
-              "type": "date"
-            },
-            {
-              "alias": "",
-              "colorMode": null,
-              "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-              ],
-              "decimals": 2,
-              "pattern": "btc.mean",
-              "thresholds": [],
-              "type": "number",
-              "unit": "none"
-            },
-            {
-              "alias": "",
-              "colorMode": null,
-              "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-              ],
-              "dateFormat": "YYYY-MM-DD HH:mm:ss",
-              "decimals": 3,
-              "pattern": "btc.difference_mean_difference",
-              "thresholds": [],
-              "type": "number",
-              "unit": "percentunit"
-            }
-          ],
-          "targets": [
-            {
-              "dsType": "influxdb",
-              "groupBy": [
-                {
-                  "params": [
-                    "5m"
-                  ],
-                  "type": "time"
-                }
-              ],
-              "measurement": "/^$coin_type$/",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT difference(mean(\"price\")) / (mean(\"price\") - difference(mean(\"price\"))) FROM /^$coin_type$/ WHERE $timeFilter GROUP BY time(5m)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "price"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  },
-                  {
-                    "params": [],
-                    "type": "difference"
-                  }
-                ]
-              ],
-              "tags": []
-            }
-          ],
-          "title": "Panel Title",
-          "transform": "timeseries_to_columns",
-          "type": "table"
-        }
-      ],
-      "repeat": null,
-      "repeatIteration": null,
-      "repeatRowId": null,
-      "showTitle": false,
-      "title": "Dashboard Row",
-      "titleSize": "h6"
     }
   ],
   "schemaVersion": 14,
@@ -1486,5 +1374,5 @@
   },
   "timezone": "",
   "title": "Bitmon",
-  "version": 19
+  "version": 21
 }

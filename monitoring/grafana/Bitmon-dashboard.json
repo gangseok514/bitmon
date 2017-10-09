@@ -33,6 +33,12 @@
       "id": "singlestat",
       "name": "Singlestat",
       "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
     }
   ],
   "annotations": {
@@ -44,7 +50,848 @@
   "hideControls": false,
   "id": null,
   "links": [],
+  "refresh": "10s",
   "rows": [
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgb(0, 22, 252)",
+            "rgb(0, 255, 20)",
+            "rgba(255, 0, 0, 0.97)"
+          ],
+          "datasource": "${DS_INFLUXDB}",
+          "decimals": 3,
+          "format": "percentunit",
+          "gauge": {
+            "maxValue": 1,
+            "minValue": -1,
+            "show": true,
+            "thresholdLabels": true,
+            "thresholdMarkers": true
+          },
+          "id": 8,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "repeat": null,
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "mean",
+          "targets": [
+            {
+              "alias": "",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "5m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "/^$coin_type$/",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT difference(mean(\"price\")) / (mean(\"price\") - difference(mean(\"price\"))) FROM /^$coin_type$/ WHERE $timeFilter GROUP BY time(5m)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "price"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "derivative"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": "-0.1,0.3",
+          "title": "5m",
+          "type": "singlestat",
+          "valueFontSize": "30%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgb(0, 22, 252)",
+            "rgb(0, 248, 19)",
+            "rgba(255, 0, 0, 0.97)"
+          ],
+          "datasource": "${DS_INFLUXDB}",
+          "decimals": 3,
+          "format": "percentunit",
+          "gauge": {
+            "maxValue": 1,
+            "minValue": -1,
+            "show": true,
+            "thresholdLabels": true,
+            "thresholdMarkers": true
+          },
+          "id": 9,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "10m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "/^$coin_type$/",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT difference(mean(\"price\")) / (mean(\"price\") - difference(mean(\"price\"))) FROM /^$coin_type$/ WHERE $timeFilter GROUP BY time(10m)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "price"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "derivative"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": "-0.1,0.3",
+          "timeFrom": null,
+          "title": "10m",
+          "type": "singlestat",
+          "valueFontSize": "30%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgb(0, 22, 252)",
+            "rgb(0, 248, 19)",
+            "rgba(255, 0, 0, 0.97)"
+          ],
+          "datasource": "${DS_INFLUXDB}",
+          "decimals": 3,
+          "format": "percentunit",
+          "gauge": {
+            "maxValue": 2,
+            "minValue": -2,
+            "show": true,
+            "thresholdLabels": true,
+            "thresholdMarkers": true
+          },
+          "id": 10,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "15m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "/^$coin_type$/",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT difference(mean(\"price\")) / (mean(\"price\") - difference(mean(\"price\"))) FROM /^$coin_type$/ WHERE $timeFilter GROUP BY time(15m)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "price"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "derivative"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": "-0.2,0.5",
+          "title": "15m",
+          "type": "singlestat",
+          "valueFontSize": "30%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgb(0, 22, 252)",
+            "rgb(0, 248, 19)",
+            "rgba(255, 0, 0, 0.97)"
+          ],
+          "datasource": "${DS_INFLUXDB}",
+          "decimals": 3,
+          "format": "percentunit",
+          "gauge": {
+            "maxValue": 3,
+            "minValue": -3,
+            "show": true,
+            "thresholdLabels": true,
+            "thresholdMarkers": true
+          },
+          "id": 11,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "30m"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "/^$coin_type$/",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT difference(mean(\"price\")) / (mean(\"price\") - difference(mean(\"price\"))) FROM /^$coin_type$/ WHERE $timeFilter GROUP BY time(30m)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "price"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "derivative"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": "-0.2,1",
+          "title": "30m",
+          "type": "singlestat",
+          "valueFontSize": "30%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgb(0, 22, 252)",
+            "rgb(0, 248, 19)",
+            "rgba(255, 0, 0, 0.97)"
+          ],
+          "datasource": "${DS_INFLUXDB}",
+          "decimals": 3,
+          "format": "percentunit",
+          "gauge": {
+            "maxValue": 5,
+            "minValue": -5,
+            "show": true,
+            "thresholdLabels": true,
+            "thresholdMarkers": true
+          },
+          "id": 12,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1h"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "/^$coin_type$/",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT difference(mean(\"price\")) / (mean(\"price\") - difference(mean(\"price\"))) FROM /^$coin_type$/ WHERE $timeFilter GROUP BY time(1h)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "price"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "derivative"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": "-0.3,2",
+          "title": "1h",
+          "type": "singlestat",
+          "valueFontSize": "30%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        },
+        {
+          "cacheTimeout": null,
+          "colorBackground": false,
+          "colorValue": false,
+          "colors": [
+            "rgb(0, 22, 252)",
+            "rgb(0, 248, 19)",
+            "rgba(255, 0, 0, 0.97)"
+          ],
+          "datasource": "${DS_INFLUXDB}",
+          "decimals": 3,
+          "format": "percentunit",
+          "gauge": {
+            "maxValue": 10,
+            "minValue": -10,
+            "show": true,
+            "thresholdLabels": true,
+            "thresholdMarkers": true
+          },
+          "id": 13,
+          "interval": null,
+          "links": [],
+          "mappingType": 1,
+          "mappingTypes": [
+            {
+              "name": "value to text",
+              "value": 1
+            },
+            {
+              "name": "range to text",
+              "value": 2
+            }
+          ],
+          "maxDataPoints": 100,
+          "nullPointMode": "connected",
+          "nullText": null,
+          "postfix": "",
+          "postfixFontSize": "50%",
+          "prefix": "",
+          "prefixFontSize": "50%",
+          "rangeMaps": [
+            {
+              "from": "null",
+              "text": "N/A",
+              "to": "null"
+            }
+          ],
+          "span": 2,
+          "sparkline": {
+            "fillColor": "rgba(31, 118, 189, 0.18)",
+            "full": false,
+            "lineColor": "rgb(31, 120, 193)",
+            "show": false
+          },
+          "tableColumn": "",
+          "targets": [
+            {
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "2h"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "/^$coin_type$/",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT difference(mean(\"price\")) / (mean(\"price\") - difference(mean(\"price\"))) FROM /^$coin_type$/ WHERE $timeFilter GROUP BY time(2h)",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "price"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "1s"
+                    ],
+                    "type": "derivative"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": "-0.3,3",
+          "title": "2h",
+          "type": "singlestat",
+          "valueFontSize": "30%",
+          "valueMaps": [
+            {
+              "op": "=",
+              "text": "N/A",
+              "value": "null"
+            }
+          ],
+          "valueName": "current"
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "The rate of change",
+      "titleSize": "h6"
+    },
+    {
+      "collapse": false,
+      "height": 250,
+      "panels": [
+        {
+          "aliasColors": {
+            "Changes": "#EAB839"
+          },
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_INFLUXDB}",
+          "fill": 1,
+          "id": 14,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "connected",
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "The rate of change",
+              "bars": true,
+              "lines": false,
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "Total",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "1m"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "/^$coin_type$/",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT mean(\"price\") FROM /^$coin_type$/ WHERE (\"crx\" = 'bithumb') AND $timeFilter GROUP BY time(1m) fill(null)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "price"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            },
+            {
+              "alias": "The rate of change",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT difference(mean(\"price\")) / (mean(\"price\") - difference(mean(\"price\"))) FROM /^$coin_type$/ WHERE $timeFilter GROUP BY time(5m)",
+              "rawQuery": true,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "Price: $coin_type",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": null,
+              "format": "none",
+              "label": "Won",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "decimals": null,
+              "format": "percentunit",
+              "label": null,
+              "logBase": 1,
+              "max": "0.01",
+              "min": "-0.01",
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": null,
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": true,
+      "title": "Avg. Price",
+      "titleSize": "h6"
+    },
     {
       "collapse": false,
       "height": "250px",
@@ -101,6 +948,8 @@
               "measurement": "/^$coin_type$/",
               "orderByTime": "ASC",
               "policy": "default",
+              "query": "SELECT mean(\"price\") FROM /^$coin_type$/ WHERE (\"crx\" = 'bithumb') AND $timeFilter GROUP BY time(1m) fill(null)",
+              "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
               "select": [
@@ -293,19 +1142,13 @@
                     "1m"
                   ],
                   "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
                 }
               ],
               "hide": false,
               "measurement": "/^$coin_type$/",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT (derivative(mean(\"price\"), 1m) / (mean(\"price\") - derivative(mean(\"price\"), 1m)) * 100) FROM /^$coin_type$/ WHERE (\"crx\" = 'bithumb') AND $timeFilter GROUP BY time(1m) fill(null)",
+              "query": "SELECT difference(mean(\"price\")) / (mean(\"price\") - difference(mean(\"price\"))) FROM /^$coin_type$/ WHERE (\"crx\" = 'bithumb') AND $timeFilter GROUP BY time(1m)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -323,7 +1166,7 @@
                   },
                   {
                     "params": [
-                      "1m"
+                      "1s"
                     ],
                     "type": "derivative"
                   }
@@ -346,19 +1189,13 @@
                     "1m"
                   ],
                   "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
                 }
               ],
               "hide": false,
               "measurement": "/^$coin_type$/",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT (derivative(mean(\"price\"), 1m) / (mean(\"price\") - derivative(mean(\"price\"), 1m)) * 100) FROM /^$coin_type$/ WHERE (\"crx\" = 'coinone') AND $timeFilter GROUP BY time(1m) fill(null)",
+              "query": "SELECT difference(mean(\"price\")) / (mean(\"price\") - difference(mean(\"price\"))) FROM /^$coin_type$/ WHERE (\"crx\" = 'coinone') AND $timeFilter GROUP BY time(1m)",
               "rawQuery": true,
               "refId": "B",
               "resultFormat": "time_series",
@@ -376,7 +1213,7 @@
                   },
                   {
                     "params": [
-                      "1m"
+                      "1s"
                     ],
                     "type": "derivative"
                   }
@@ -399,19 +1236,13 @@
                     "1m"
                   ],
                   "type": "time"
-                },
-                {
-                  "params": [
-                    "null"
-                  ],
-                  "type": "fill"
                 }
               ],
               "hide": false,
               "measurement": "/^$coin_type$/",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT (derivative(mean(\"price\"), 1m) / (mean(\"price\") - derivative(mean(\"price\"), 1m)) * 100) FROM /^$coin_type$/ WHERE (\"crx\" = 'korbit') AND $timeFilter GROUP BY time(1m) fill(null)",
+              "query": "SELECT difference(mean(\"price\")) / (mean(\"price\") - difference(mean(\"price\"))) FROM /^$coin_type$/ WHERE (\"crx\" = 'korbit') AND $timeFilter GROUP BY time(1m)",
               "rawQuery": true,
               "refId": "C",
               "resultFormat": "time_series",
@@ -429,7 +1260,7 @@
                   },
                   {
                     "params": [
-                      "1m"
+                      "1s"
                     ],
                     "type": "derivative"
                   }
@@ -447,7 +1278,7 @@
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Prices Change : $coin_type",
+          "title": "The rate of change: $coin_type",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -464,7 +1295,7 @@
           "yaxes": [
             {
               "decimals": null,
-              "format": "percent",
+              "format": "percentunit",
               "label": "",
               "logBase": 1,
               "max": null,
@@ -477,7 +1308,7 @@
               "logBase": 1,
               "max": null,
               "min": null,
-              "show": true
+              "show": false
             }
           ]
         }
@@ -485,8 +1316,8 @@
       "repeat": null,
       "repeatIteration": null,
       "repeatRowId": null,
-      "showTitle": false,
-      "title": "Dashboard Row",
+      "showTitle": true,
+      "title": "Price per exchanges",
       "titleSize": "h6"
     },
     {
@@ -494,67 +1325,63 @@
       "height": 250,
       "panels": [
         {
-          "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": false,
-          "colors": [
-            "rgba(255, 0, 0, 0.97)",
-            "rgb(0, 248, 19)",
-            "rgb(0, 22, 252)"
-          ],
+          "columns": [],
           "datasource": "${DS_INFLUXDB}",
-          "decimals": 3,
-          "format": "percent",
-          "gauge": {
-            "maxValue": 1,
-            "minValue": -1,
-            "show": true,
-            "thresholdLabels": true,
-            "thresholdMarkers": true
-          },
-          "id": 8,
-          "interval": null,
+          "fontSize": "100%",
+          "id": 15,
           "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
+          "pageSize": null,
+          "scroll": true,
+          "showHeader": true,
+          "sort": {
+            "col": 0,
+            "desc": true
+          },
+          "span": 12,
+          "styles": [
             {
-              "name": "value to text",
-              "value": 1
+              "alias": "Time",
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "pattern": "Time",
+              "type": "date"
             },
             {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
-          "maxDataPoints": 100,
-          "nullPointMode": "connected",
-          "nullText": null,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [
+              "alias": "",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "decimals": 2,
+              "pattern": "btc.mean",
+              "thresholds": [],
+              "type": "number",
+              "unit": "none"
+            },
             {
-              "from": "null",
-              "text": "N/A",
-              "to": "null"
+              "alias": "",
+              "colorMode": null,
+              "colors": [
+                "rgba(245, 54, 54, 0.9)",
+                "rgba(237, 129, 40, 0.89)",
+                "rgba(50, 172, 45, 0.97)"
+              ],
+              "dateFormat": "YYYY-MM-DD HH:mm:ss",
+              "decimals": 3,
+              "pattern": "btc.difference_mean_difference",
+              "thresholds": [],
+              "type": "number",
+              "unit": "percentunit"
             }
           ],
-          "span": 2,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": false
-          },
-          "tableColumn": "",
           "targets": [
             {
               "dsType": "influxdb",
               "groupBy": [
                 {
                   "params": [
-                    "1h"
+                    "5m"
                   ],
                   "type": "time"
                 }
@@ -562,7 +1389,7 @@
               "measurement": "/^$coin_type$/",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT (derivative(mean(\"price\"), 5m) / (mean(\"price\") - derivative(mean(\"price\"), 5m)) * 100) FROM /^$coin_type$/ WHERE $timeFilter GROUP BY time(5m)",
+              "query": "SELECT difference(mean(\"price\")) / (mean(\"price\") - difference(mean(\"price\"))) FROM /^$coin_type$/ WHERE $timeFilter GROUP BY time(5m)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -579,573 +1406,17 @@
                     "type": "mean"
                   },
                   {
-                    "params": [
-                      "1h"
-                    ],
-                    "type": "derivative"
-                  }
-                ]
-              ],
-              "tags": []
-            }
-          ],
-          "thresholds": "-0.1,0.3",
-          "title": "Avg Changes in 5m",
-          "type": "singlestat",
-          "valueFontSize": "30%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "N/A",
-              "value": "null"
-            }
-          ],
-          "valueName": "current"
-        },
-        {
-          "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": false,
-          "colors": [
-            "rgba(255, 0, 0, 0.97)",
-            "rgb(0, 248, 19)",
-            "rgb(0, 22, 252)"
-          ],
-          "datasource": "${DS_INFLUXDB}",
-          "decimals": 3,
-          "format": "percent",
-          "gauge": {
-            "maxValue": 1,
-            "minValue": -1,
-            "show": true,
-            "thresholdLabels": true,
-            "thresholdMarkers": true
-          },
-          "id": 9,
-          "interval": null,
-          "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
-          "maxDataPoints": 100,
-          "nullPointMode": "connected",
-          "nullText": null,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [
-            {
-              "from": "null",
-              "text": "N/A",
-              "to": "null"
-            }
-          ],
-          "span": 2,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": false
-          },
-          "tableColumn": "",
-          "targets": [
-            {
-              "dsType": "influxdb",
-              "groupBy": [
-                {
-                  "params": [
-                    "1h"
-                  ],
-                  "type": "time"
-                }
-              ],
-              "measurement": "/^$coin_type$/",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT (derivative(mean(\"price\"), 10m) / (mean(\"price\") - derivative(mean(\"price\"), 10m)) * 100) FROM /^$coin_type$/ WHERE $timeFilter GROUP BY time(10m)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "price"
-                    ],
-                    "type": "field"
-                  },
-                  {
                     "params": [],
-                    "type": "mean"
-                  },
-                  {
-                    "params": [
-                      "1h"
-                    ],
-                    "type": "derivative"
+                    "type": "difference"
                   }
                 ]
               ],
               "tags": []
             }
           ],
-          "thresholds": "-0.1,0.3",
-          "title": "Avg Changes in 10m",
-          "type": "singlestat",
-          "valueFontSize": "30%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "N/A",
-              "value": "null"
-            }
-          ],
-          "valueName": "current"
-        },
-        {
-          "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": false,
-          "colors": [
-            "rgba(255, 0, 0, 0.97)",
-            "rgb(0, 248, 19)",
-            "rgb(0, 22, 252)"
-          ],
-          "datasource": "${DS_INFLUXDB}",
-          "decimals": 3,
-          "format": "percent",
-          "gauge": {
-            "maxValue": 2,
-            "minValue": -2,
-            "show": true,
-            "thresholdLabels": true,
-            "thresholdMarkers": true
-          },
-          "id": 10,
-          "interval": null,
-          "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
-          "maxDataPoints": 100,
-          "nullPointMode": "connected",
-          "nullText": null,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [
-            {
-              "from": "null",
-              "text": "N/A",
-              "to": "null"
-            }
-          ],
-          "span": 2,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": false
-          },
-          "tableColumn": "",
-          "targets": [
-            {
-              "dsType": "influxdb",
-              "groupBy": [
-                {
-                  "params": [
-                    "1h"
-                  ],
-                  "type": "time"
-                }
-              ],
-              "measurement": "/^$coin_type$/",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT (derivative(mean(\"price\"), 15m) / (mean(\"price\") - derivative(mean(\"price\"), 15m)) * 100) FROM /^$coin_type$/ WHERE $timeFilter GROUP BY time(15m)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "price"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  },
-                  {
-                    "params": [
-                      "1h"
-                    ],
-                    "type": "derivative"
-                  }
-                ]
-              ],
-              "tags": []
-            }
-          ],
-          "thresholds": "-0.2,0.5",
-          "title": "Avg Changes in 15m",
-          "type": "singlestat",
-          "valueFontSize": "30%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "N/A",
-              "value": "null"
-            }
-          ],
-          "valueName": "current"
-        },
-        {
-          "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": false,
-          "colors": [
-            "rgba(255, 0, 0, 0.97)",
-            "rgb(0, 248, 19)",
-            "rgb(0, 22, 252)"
-          ],
-          "datasource": "${DS_INFLUXDB}",
-          "decimals": 3,
-          "format": "percent",
-          "gauge": {
-            "maxValue": 3,
-            "minValue": -3,
-            "show": true,
-            "thresholdLabels": true,
-            "thresholdMarkers": true
-          },
-          "id": 11,
-          "interval": null,
-          "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
-          "maxDataPoints": 100,
-          "nullPointMode": "connected",
-          "nullText": null,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [
-            {
-              "from": "null",
-              "text": "N/A",
-              "to": "null"
-            }
-          ],
-          "span": 2,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": false
-          },
-          "tableColumn": "",
-          "targets": [
-            {
-              "dsType": "influxdb",
-              "groupBy": [
-                {
-                  "params": [
-                    "1h"
-                  ],
-                  "type": "time"
-                }
-              ],
-              "measurement": "/^$coin_type$/",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT (derivative(mean(\"price\"), 30m) / (mean(\"price\") - derivative(mean(\"price\"), 30m)) * 100) FROM /^$coin_type$/ WHERE $timeFilter GROUP BY time(30m)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "price"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  },
-                  {
-                    "params": [
-                      "1h"
-                    ],
-                    "type": "derivative"
-                  }
-                ]
-              ],
-              "tags": []
-            }
-          ],
-          "thresholds": "-0.2,1",
-          "title": "Avg Changes in 30m",
-          "type": "singlestat",
-          "valueFontSize": "30%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "N/A",
-              "value": "null"
-            }
-          ],
-          "valueName": "current"
-        },
-        {
-          "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": false,
-          "colors": [
-            "rgba(255, 0, 0, 0.97)",
-            "rgb(0, 248, 19)",
-            "rgb(0, 22, 252)"
-          ],
-          "datasource": "${DS_INFLUXDB}",
-          "decimals": 3,
-          "format": "percent",
-          "gauge": {
-            "maxValue": 5,
-            "minValue": -5,
-            "show": true,
-            "thresholdLabels": true,
-            "thresholdMarkers": true
-          },
-          "id": 12,
-          "interval": null,
-          "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
-          "maxDataPoints": 100,
-          "nullPointMode": "connected",
-          "nullText": null,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [
-            {
-              "from": "null",
-              "text": "N/A",
-              "to": "null"
-            }
-          ],
-          "span": 2,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": false
-          },
-          "tableColumn": "",
-          "targets": [
-            {
-              "dsType": "influxdb",
-              "groupBy": [
-                {
-                  "params": [
-                    "1h"
-                  ],
-                  "type": "time"
-                }
-              ],
-              "measurement": "/^$coin_type$/",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT (derivative(mean(\"price\"), 1h) / (mean(\"price\") - derivative(mean(\"price\"), 1h)) * 100) FROM /^$coin_type$/ WHERE $timeFilter GROUP BY time(1h)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "price"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  },
-                  {
-                    "params": [
-                      "1h"
-                    ],
-                    "type": "derivative"
-                  }
-                ]
-              ],
-              "tags": []
-            }
-          ],
-          "thresholds": "-0.3,2",
-          "title": "Avg Changes in 1h",
-          "type": "singlestat",
-          "valueFontSize": "30%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "N/A",
-              "value": "null"
-            }
-          ],
-          "valueName": "current"
-        },
-        {
-          "cacheTimeout": null,
-          "colorBackground": false,
-          "colorValue": false,
-          "colors": [
-            "rgba(255, 0, 0, 0.97)",
-            "rgb(0, 248, 19)",
-            "rgb(0, 22, 252)"
-          ],
-          "datasource": "${DS_INFLUXDB}",
-          "decimals": 3,
-          "format": "percent",
-          "gauge": {
-            "maxValue": 10,
-            "minValue": -10,
-            "show": true,
-            "thresholdLabels": true,
-            "thresholdMarkers": true
-          },
-          "id": 13,
-          "interval": null,
-          "links": [],
-          "mappingType": 1,
-          "mappingTypes": [
-            {
-              "name": "value to text",
-              "value": 1
-            },
-            {
-              "name": "range to text",
-              "value": 2
-            }
-          ],
-          "maxDataPoints": 100,
-          "nullPointMode": "connected",
-          "nullText": null,
-          "postfix": "",
-          "postfixFontSize": "50%",
-          "prefix": "",
-          "prefixFontSize": "50%",
-          "rangeMaps": [
-            {
-              "from": "null",
-              "text": "N/A",
-              "to": "null"
-            }
-          ],
-          "span": 2,
-          "sparkline": {
-            "fillColor": "rgba(31, 118, 189, 0.18)",
-            "full": false,
-            "lineColor": "rgb(31, 120, 193)",
-            "show": false
-          },
-          "tableColumn": "",
-          "targets": [
-            {
-              "dsType": "influxdb",
-              "groupBy": [
-                {
-                  "params": [
-                    "1h"
-                  ],
-                  "type": "time"
-                }
-              ],
-              "measurement": "/^$coin_type$/",
-              "orderByTime": "ASC",
-              "policy": "default",
-              "query": "SELECT (derivative(mean(\"price\"), 2h) / (mean(\"price\") - derivative(mean(\"price\"), 2h)) * 100) FROM /^$coin_type$/ WHERE $timeFilter GROUP BY time(2h)",
-              "rawQuery": true,
-              "refId": "A",
-              "resultFormat": "time_series",
-              "select": [
-                [
-                  {
-                    "params": [
-                      "price"
-                    ],
-                    "type": "field"
-                  },
-                  {
-                    "params": [],
-                    "type": "mean"
-                  },
-                  {
-                    "params": [
-                      "1h"
-                    ],
-                    "type": "derivative"
-                  }
-                ]
-              ],
-              "tags": []
-            }
-          ],
-          "thresholds": "-0.3,3",
-          "title": "Avg Changes in 2h",
-          "type": "singlestat",
-          "valueFontSize": "30%",
-          "valueMaps": [
-            {
-              "op": "=",
-              "text": "N/A",
-              "value": "null"
-            }
-          ],
-          "valueName": "current"
+          "title": "Panel Title",
+          "transform": "timeseries_to_columns",
+          "type": "table"
         }
       ],
       "repeat": null,
@@ -1184,10 +1455,11 @@
     ]
   },
   "time": {
-    "from": "now-6h",
-    "to": "now"
+    "from": "now-24h",
+    "to": "now-1m"
   },
   "timepicker": {
+    "nowDelay": "1m",
     "refresh_intervals": [
       "5s",
       "10s",
@@ -1214,5 +1486,5 @@
   },
   "timezone": "",
   "title": "Bitmon",
-  "version": 10
+  "version": 19
 }

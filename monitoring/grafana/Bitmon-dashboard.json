@@ -53,7 +53,7 @@
         {
           "cacheTimeout": null,
           "colorBackground": false,
-          "colorValue": false,
+          "colorValue": true,
           "colors": [
             "rgb(0, 22, 252)",
             "rgb(0, 255, 20)",
@@ -65,7 +65,7 @@
           "gauge": {
             "maxValue": 1,
             "minValue": -1,
-            "show": true,
+            "show": false,
             "thresholdLabels": true,
             "thresholdMarkers": true
           },
@@ -121,7 +121,7 @@
               "measurement": "/^$coin_type$/",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT difference(mean(\"price\")) / (mean(\"price\") - difference(mean(\"price\"))) FROM /^$coin_type$/ WHERE $timeFilter GROUP BY time(5m)",
+              "query": "SELECT difference(mean(\"value\")) / (mean(\"value\") - difference(mean(\"value\"))) FROM ticker WHERE (\"currency\" =~ /^$coin_type$/) AND $timeFilter GROUP BY time(5m)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -151,7 +151,7 @@
           "thresholds": "-0.1,0.3",
           "title": "5m",
           "type": "singlestat",
-          "valueFontSize": "30%",
+          "valueFontSize": "100%",
           "valueMaps": [
             {
               "op": "=",
@@ -164,7 +164,7 @@
         {
           "cacheTimeout": null,
           "colorBackground": false,
-          "colorValue": false,
+          "colorValue": true,
           "colors": [
             "rgb(0, 22, 252)",
             "rgb(0, 248, 19)",
@@ -176,7 +176,7 @@
           "gauge": {
             "maxValue": 1,
             "minValue": -1,
-            "show": true,
+            "show": false,
             "thresholdLabels": true,
             "thresholdMarkers": true
           },
@@ -230,7 +230,7 @@
               "measurement": "/^$coin_type$/",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT difference(mean(\"price\")) / (mean(\"price\") - difference(mean(\"price\"))) FROM /^$coin_type$/ WHERE $timeFilter GROUP BY time(10m)",
+              "query": "SELECT difference(mean(\"value\")) / (mean(\"value\") - difference(mean(\"value\"))) FROM ticker WHERE (\"currency\" =~ /^$coin_type$/) AND $timeFilter GROUP BY time(10m)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -261,7 +261,7 @@
           "timeFrom": null,
           "title": "10m",
           "type": "singlestat",
-          "valueFontSize": "30%",
+          "valueFontSize": "100%",
           "valueMaps": [
             {
               "op": "=",
@@ -274,7 +274,7 @@
         {
           "cacheTimeout": null,
           "colorBackground": false,
-          "colorValue": false,
+          "colorValue": true,
           "colors": [
             "rgb(0, 22, 252)",
             "rgb(0, 248, 19)",
@@ -286,7 +286,7 @@
           "gauge": {
             "maxValue": 2,
             "minValue": -2,
-            "show": true,
+            "show": false,
             "thresholdLabels": true,
             "thresholdMarkers": true
           },
@@ -340,7 +340,7 @@
               "measurement": "/^$coin_type$/",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT difference(mean(\"price\")) / (mean(\"price\") - difference(mean(\"price\"))) FROM /^$coin_type$/ WHERE $timeFilter GROUP BY time(15m)",
+              "query": "SELECT difference(mean(\"value\")) / (mean(\"value\") - difference(mean(\"value\"))) FROM ticker WHERE (\"currency\" =~ /^$coin_type$/) AND $timeFilter GROUP BY time(15m)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -370,7 +370,7 @@
           "thresholds": "-0.2,0.5",
           "title": "15m",
           "type": "singlestat",
-          "valueFontSize": "30%",
+          "valueFontSize": "100%",
           "valueMaps": [
             {
               "op": "=",
@@ -383,7 +383,7 @@
         {
           "cacheTimeout": null,
           "colorBackground": false,
-          "colorValue": false,
+          "colorValue": true,
           "colors": [
             "rgb(0, 22, 252)",
             "rgb(0, 248, 19)",
@@ -395,7 +395,7 @@
           "gauge": {
             "maxValue": 3,
             "minValue": -3,
-            "show": true,
+            "show": false,
             "thresholdLabels": true,
             "thresholdMarkers": true
           },
@@ -449,7 +449,7 @@
               "measurement": "/^$coin_type$/",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT difference(mean(\"price\")) / (mean(\"price\") - difference(mean(\"price\"))) FROM /^$coin_type$/ WHERE $timeFilter GROUP BY time(30m)",
+              "query": "SELECT difference(mean(\"value\")) / (mean(\"value\") - difference(mean(\"value\"))) FROM ticker WHERE (\"currency\" =~ /^$coin_type$/) AND $timeFilter GROUP BY time(30m)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -479,7 +479,7 @@
           "thresholds": "-0.2,1",
           "title": "30m",
           "type": "singlestat",
-          "valueFontSize": "30%",
+          "valueFontSize": "100%",
           "valueMaps": [
             {
               "op": "=",
@@ -492,7 +492,7 @@
         {
           "cacheTimeout": null,
           "colorBackground": false,
-          "colorValue": false,
+          "colorValue": true,
           "colors": [
             "rgb(0, 22, 252)",
             "rgb(0, 248, 19)",
@@ -504,7 +504,7 @@
           "gauge": {
             "maxValue": 5,
             "minValue": -5,
-            "show": true,
+            "show": false,
             "thresholdLabels": true,
             "thresholdMarkers": true
           },
@@ -558,7 +558,7 @@
               "measurement": "/^$coin_type$/",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT difference(mean(\"price\")) / (mean(\"price\") - difference(mean(\"price\"))) FROM /^$coin_type$/ WHERE $timeFilter GROUP BY time(1h)",
+              "query": "SELECT difference(mean(\"value\")) / (mean(\"value\") - difference(mean(\"value\"))) FROM ticker WHERE (\"currency\" =~ /^$coin_type$/) AND $timeFilter GROUP BY time(1h)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -588,7 +588,7 @@
           "thresholds": "-0.3,2",
           "title": "1h",
           "type": "singlestat",
-          "valueFontSize": "30%",
+          "valueFontSize": "100%",
           "valueMaps": [
             {
               "op": "=",
@@ -601,7 +601,7 @@
         {
           "cacheTimeout": null,
           "colorBackground": false,
-          "colorValue": false,
+          "colorValue": true,
           "colors": [
             "rgb(0, 22, 252)",
             "rgb(0, 248, 19)",
@@ -613,7 +613,7 @@
           "gauge": {
             "maxValue": 10,
             "minValue": -10,
-            "show": true,
+            "show": false,
             "thresholdLabels": true,
             "thresholdMarkers": true
           },
@@ -667,7 +667,7 @@
               "measurement": "/^$coin_type$/",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT difference(mean(\"price\")) / (mean(\"price\") - difference(mean(\"price\"))) FROM /^$coin_type$/ WHERE $timeFilter GROUP BY time(2h)",
+              "query": "SELECT difference(mean(\"value\")) / (mean(\"value\") - difference(mean(\"value\"))) FROM ticker WHERE (\"currency\" =~ /^$coin_type$/) AND $timeFilter GROUP BY time(2h)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -697,7 +697,7 @@
           "thresholds": "-0.3,3",
           "title": "2h",
           "type": "singlestat",
-          "valueFontSize": "30%",
+          "valueFontSize": "100%",
           "valueMaps": [
             {
               "op": "=",
@@ -712,7 +712,7 @@
       "repeatIteration": null,
       "repeatRowId": null,
       "showTitle": true,
-      "title": "The rate of change",
+      "title": "Avg. rate of changes",
       "titleSize": "h6"
     },
     {
@@ -721,22 +721,30 @@
       "panels": [
         {
           "aliasColors": {
-            "Changes": "#EAB839"
+            "Changes": "#EAB839",
+            "The rate of change": "#0A437C",
+            "The rate of change(+)": "#BF1B00",
+            "The rate of change(-)": "#1F78C1"
           },
           "bars": false,
           "dashLength": 10,
           "dashes": false,
           "datasource": "${DS_INFLUXDB}",
+          "decimals": 2,
           "fill": 1,
           "id": 14,
           "legend": {
+            "alignAsTable": false,
             "avg": false,
-            "current": false,
+            "current": true,
+            "hideEmpty": false,
+            "hideZero": false,
             "max": false,
             "min": false,
+            "rightSide": false,
             "show": true,
             "total": false,
-            "values": false
+            "values": true
           },
           "lines": true,
           "linewidth": 2,
@@ -748,8 +756,16 @@
           "renderer": "flot",
           "seriesOverrides": [
             {
-              "alias": "The rate of change",
+              "alias": "The rate of change(+)",
               "bars": true,
+              "legend": false,
+              "lines": false,
+              "yaxis": 2
+            },
+            {
+              "alias": "The rate of change(-)",
+              "bars": true,
+              "legend": false,
               "lines": false,
               "yaxis": 2
             }
@@ -760,7 +776,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "alias": "Total",
+              "alias": "Avg.",
               "dsType": "influxdb",
               "groupBy": [
                 {
@@ -777,18 +793,18 @@
                 }
               ],
               "hide": false,
-              "measurement": "/^$coin_type$/",
+              "measurement": "ticker",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT mean(\"price\") FROM /^$coin_type$/ WHERE (\"crx\" = 'bithumb') AND $timeFilter GROUP BY time(1m) fill(null)",
-              "rawQuery": false,
+              "query": "SELECT mean(\"value\") FROM \"ticker\" WHERE (\"currency\" =~ /^$coin_type$/) AND $timeFilter GROUP BY time(1m) fill(null)",
+              "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
               "select": [
                 [
                   {
                     "params": [
-                      "price"
+                      "value"
                     ],
                     "type": "field"
                   },
@@ -798,10 +814,16 @@
                   }
                 ]
               ],
-              "tags": []
+              "tags": [
+                {
+                  "key": "currency",
+                  "operator": "=~",
+                  "value": "/^$coin_type$/"
+                }
+              ]
             },
             {
-              "alias": "The rate of change",
+              "alias": "The rate of change(-)",
               "dsType": "influxdb",
               "groupBy": [
                 {
@@ -817,9 +839,50 @@
                   "type": "fill"
                 }
               ],
+              "hide": false,
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT difference(mean(\"price\")) / (mean(\"price\") - difference(mean(\"price\"))) FROM /^$coin_type$/ WHERE $timeFilter GROUP BY time(5m)",
+              "query": "SELECT difference(mean(\"value\")) / (mean(\"value\") - difference(mean(\"value\"))) FROM ticker WHERE (\"currency\" =~ /^$coin_type$/) AND $timeFilter GROUP BY time(5m)",
+              "rawQuery": true,
+              "refId": "C",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            },
+            {
+              "alias": "The rate of change(+)",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT non_negative_difference(mean(\"value\")) / (mean(\"value\") - difference(mean(\"value\"))) FROM ticker WHERE (\"currency\" =~ /^$coin_type$/) AND $timeFilter GROUP BY time(5m)",
               "rawQuery": true,
               "refId": "B",
               "resultFormat": "time_series",
@@ -843,7 +906,7 @@
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Price: $coin_type",
+          "title": "Rate: $coin_type",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -868,7 +931,7 @@
               "show": true
             },
             {
-              "decimals": null,
+              "decimals": 3,
               "format": "percentunit",
               "label": null,
               "logBase": 1,
@@ -883,7 +946,7 @@
       "repeatIteration": null,
       "repeatRowId": null,
       "showTitle": true,
-      "title": "Avg. Price",
+      "title": "Avg. rate",
       "titleSize": "h6"
     },
     {
@@ -900,12 +963,12 @@
           "id": 1,
           "legend": {
             "avg": false,
-            "current": false,
+            "current": true,
             "max": false,
             "min": false,
             "show": true,
             "total": false,
-            "values": false
+            "values": true
           },
           "lines": true,
           "linewidth": 2,
@@ -939,18 +1002,18 @@
                 }
               ],
               "hide": false,
-              "measurement": "/^$coin_type$/",
+              "measurement": "ticker",
               "orderByTime": "ASC",
               "policy": "default",
               "query": "SELECT mean(\"price\") FROM /^$coin_type$/ WHERE (\"crx\" = 'bithumb') AND $timeFilter GROUP BY time(1m) fill(null)",
-              "rawQuery": true,
+              "rawQuery": false,
               "refId": "A",
               "resultFormat": "time_series",
               "select": [
                 [
                   {
                     "params": [
-                      "price"
+                      "value"
                     ],
                     "type": "field"
                   },
@@ -962,7 +1025,13 @@
               ],
               "tags": [
                 {
-                  "key": "crx",
+                  "key": "currency",
+                  "operator": "=~",
+                  "value": "/^$coin_type$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "xchg",
                   "operator": "=",
                   "value": "bithumb"
                 }
@@ -986,7 +1055,7 @@
                 }
               ],
               "hide": false,
-              "measurement": "/^$coin_type$/",
+              "measurement": "ticker",
               "orderByTime": "ASC",
               "policy": "default",
               "refId": "B",
@@ -995,7 +1064,7 @@
                 [
                   {
                     "params": [
-                      "price"
+                      "value"
                     ],
                     "type": "field"
                   },
@@ -1007,7 +1076,13 @@
               ],
               "tags": [
                 {
-                  "key": "crx",
+                  "key": "currency",
+                  "operator": "=~",
+                  "value": "/^$coin_type$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "xchg",
                   "operator": "=",
                   "value": "coinone"
                 }
@@ -1031,7 +1106,7 @@
                 }
               ],
               "hide": false,
-              "measurement": "/^$coin_type$/",
+              "measurement": "ticker",
               "orderByTime": "ASC",
               "policy": "default",
               "refId": "C",
@@ -1040,7 +1115,7 @@
                 [
                   {
                     "params": [
-                      "price"
+                      "value"
                     ],
                     "type": "field"
                   },
@@ -1052,7 +1127,13 @@
               ],
               "tags": [
                 {
-                  "key": "crx",
+                  "key": "currency",
+                  "operator": "=~",
+                  "value": "/^$coin_type$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "xchg",
                   "operator": "=",
                   "value": "korbit"
                 }
@@ -1062,7 +1143,7 @@
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "Prices: $coin_type",
+          "title": "Rates: $coin_type",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -1102,16 +1183,17 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": "${DS_INFLUXDB}",
+          "decimals": 3,
           "fill": 1,
           "id": 3,
           "legend": {
             "avg": false,
-            "current": false,
+            "current": true,
             "max": false,
             "min": false,
             "show": true,
             "total": false,
-            "values": false
+            "values": true
           },
           "lines": true,
           "linewidth": 2,
@@ -1142,7 +1224,7 @@
               "measurement": "/^$coin_type$/",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT difference(mean(\"price\")) / (mean(\"price\") - difference(mean(\"price\"))) FROM /^$coin_type$/ WHERE (\"crx\" = 'bithumb') AND $timeFilter GROUP BY time(1m)",
+              "query": "SELECT difference(mean(\"value\")) / (mean(\"value\") - difference(mean(\"value\"))) FROM ticker WHERE (\"currency\" =~ /^$coin_type$/) AND (\"xchg\" = 'bithumb') AND $timeFilter GROUP BY time(1m)",
               "rawQuery": true,
               "refId": "A",
               "resultFormat": "time_series",
@@ -1189,7 +1271,7 @@
               "measurement": "/^$coin_type$/",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT difference(mean(\"price\")) / (mean(\"price\") - difference(mean(\"price\"))) FROM /^$coin_type$/ WHERE (\"crx\" = 'coinone') AND $timeFilter GROUP BY time(1m)",
+              "query": "SELECT difference(mean(\"value\")) / (mean(\"value\") - difference(mean(\"value\"))) FROM ticker WHERE (\"currency\" =~ /^$coin_type$/) AND (\"xchg\" = 'coinone') AND $timeFilter GROUP BY time(1m)",
               "rawQuery": true,
               "refId": "B",
               "resultFormat": "time_series",
@@ -1236,7 +1318,7 @@
               "measurement": "/^$coin_type$/",
               "orderByTime": "ASC",
               "policy": "default",
-              "query": "SELECT difference(mean(\"price\")) / (mean(\"price\") - difference(mean(\"price\"))) FROM /^$coin_type$/ WHERE (\"crx\" = 'korbit') AND $timeFilter GROUP BY time(1m)",
+              "query": "SELECT difference(mean(\"value\")) / (mean(\"value\") - difference(mean(\"value\"))) FROM ticker WHERE (\"currency\" =~ /^$coin_type$/) AND (\"xchg\" = 'korbit') AND $timeFilter GROUP BY time(1m)",
               "rawQuery": true,
               "refId": "C",
               "resultFormat": "time_series",
@@ -1272,7 +1354,7 @@
           "thresholds": [],
           "timeFrom": null,
           "timeShift": null,
-          "title": "The rate of change: $coin_type",
+          "title": "Rates of the changes: $coin_type",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -1311,7 +1393,7 @@
       "repeatIteration": null,
       "repeatRowId": null,
       "showTitle": true,
-      "title": "Price per exchanges",
+      "title": "Rate per exchanges",
       "titleSize": "h6"
     }
   ],
@@ -1330,7 +1412,7 @@
         "multi": false,
         "name": "coin_type",
         "options": [],
-        "query": "SHOW MEASUREMENTS",
+        "query": "SHOW TAG VALUES FROM \"ticker\" WITH KEY = \"currency\"",
         "refresh": 2,
         "regex": "",
         "sort": 1,
@@ -1343,11 +1425,11 @@
     ]
   },
   "time": {
-    "from": "now-24h",
-    "to": "now-1m"
+    "from": "now-3h",
+    "to": "now"
   },
   "timepicker": {
-    "nowDelay": "1m",
+    "nowDelay": "",
     "refresh_intervals": [
       "5s",
       "10s",
@@ -1374,5 +1456,5 @@
   },
   "timezone": "",
   "title": "Bitmon",
-  "version": 21
+  "version": 6
 }

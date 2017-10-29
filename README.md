@@ -5,8 +5,8 @@ Virtual Currency Monitoring, Simulating, Trading platform
 This platform is composed with the following components.
 
 - Monitoring
+  - Collector
   - Influxdb
-  - Fluentd
   - Grafana
 
 - Simulating and Trading(not implemented yet)
@@ -16,12 +16,13 @@ This platform is composed with the following components.
 ### Monitoring
 1. Run docker compose
 ```bash
-docker-compose up -d
+bitmon/monitoring$ docker-compose build
+bitmon/monitoring$ docker-compose up -d
 ```
 2. Open localhost:3000(ID/PW of grafana is admin/admin)
-3. Import dashboard: monitoring/grafana/bitmon-dashboard.json
+3. Done!
 
-Current exchanges support: Bithumb, Coinone, Korbit
+Current exchanges support: Bithumb, Coinone
 
 ## License
 MIT

@@ -8,14 +8,38 @@ services:
         condition: on-failure
     expose:
     - "8086"
+    ports:
+    - "8086:8086"
     volumes:
     - "./influxdb/data:/var/lib/influxdb"
     environment:
     - INFLUXDB_DB=bitmon
-  fluentd:
+  collector:
     build:
-      context: ./fluentd
-    image: fluentd-bitmon:v0.1
+      context: ./collector
+    image: collector-bitmon:v0.1
+    depends_on:
+    - influxdb
+    external_links:
+    - influxdb:influxdb
+#  fluentd:
+#    build:
+#      context: ./fluentd
+#    image: fluentd-bitmon:v0.1
+#    depends_on:
+#    - influxdb
+#    external_links:
+#    - influxdb:influxdb
+#    deploy:
+#      replicas: 1
+#      restart_policy:
+#        condition: on-failure
+#    volumes:
+#    - "./fluentd/fluent.conf:/fluentd/etc/fluent.conf"
+  grafana:
+    image: grafana/grafana:latest
+    entrypoint:
+    - /docker-entrypoint.sh
     depends_on:
     - influxdb
     external_links:
@@ -25,17 +49,10 @@ services:
       restart_policy:
         condition: on-failure
     volumes:
-    - "./fluentd/fluent.conf:/fluentd/etc/fluent.conf"
-  grafana:
-    image: grafana/grafana:latest
-    depends_on:
-    - influxdb
-    external_links:
-    - influxdb:influxdb
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
+    - "./grafana/docker-entrypoint.sh:/docker-entrypoint.sh"
+    - "./grafana/config/grafana.ini:/etc/grafana/grafana.ini"
+    - "./grafana/data:/grafana/data"
+    - "./grafana/dashboards:/grafana/dashboards"
     expose:
     - "3000"
     ports:
